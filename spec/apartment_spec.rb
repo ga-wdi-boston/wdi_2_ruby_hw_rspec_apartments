@@ -19,6 +19,11 @@ describe Apartment do
     it 'could have tenants' do
       expect(new_apt.tenants)
     end
+
+    it 'cannot modify tenants directly' do
+      expect{ new_apt.tenants = 4 }.to raise_error
+    end
+
   end
   # the list of tenants cannot be modified directly
 
