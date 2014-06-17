@@ -9,6 +9,17 @@ describe Tenant do
     end
   end
 
+  describe '#credit_ratings' do
+    it 'it returns the credit ratings' do
+      tenant800 = new_tenant
+      tenant700 = new_tenant
+      tenant700.credit_score = 700
+
+      expect(tenant800.credit_rating).to eq 'excellent'
+      expect(tenant700.credit_rating).to eq 'good'
+    end
+  end
+
   # factory object
   def new_tenant(name: 'Name', age: 88, credit_score: 800)
     tenant = Tenant.new(name: name, age: age, credit_score: credit_score)
