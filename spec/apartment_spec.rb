@@ -8,6 +8,7 @@ describe Apartment do
       expect(new_apartment.sq_ft).to eq 2000
       expect(new_apartment.num_bedrooms).to eq 2
       expect(new_apartment.num_bathrooms).to eq 2
+      expect(new_apartment.tenants).to eq []
     end
   end
 
