@@ -10,6 +10,9 @@ class Apartment
     if tenant.credit_rating == "bad"
       raise ArgumentError, "This tenant has a bad credit rating"
     end
+    if tenants.length >= beds
+      raise ArgumentError, "This apartment is full"
+    end
     @tenants.push(tenant)
   end
 
