@@ -29,8 +29,14 @@ describe Apartment do
   # has method to add tenant
   describe '#add_tenant' do
     it 'has a method to add tenants' do
-      expect(new_apt.add_tenant("hi im bob"))
+      expect(new_apt.add_tenant(new_tenant))
     end
+
+    it 'doesnt let you add tenant with bad credit rating' do
+      not_tenant = new_tenant(credit_score: 300)
+      expect{ new_apt.add_tenant(not_tenant) }.to raise_error
+    end
+    # returns an error if the apartment is full
   end
   # error if the tenant has a bad credit score or if tenant count is more than bedrooms
 

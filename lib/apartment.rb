@@ -6,6 +6,9 @@ class Apartment
   end
 
   def add_tenant(tenant)
+    if tenant.credit_rating == "bad"
+      raise ArgumentError, "This tenant has a bad credit rating"
+    end
   end
 
 end
