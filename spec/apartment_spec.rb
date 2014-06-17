@@ -32,11 +32,29 @@ describe Apartment do
       expect(new_apt.add_tenant(new_tenant))
     end
 
+    it 'puts new tenant into tenants list' do
+      apt = new_apt(beds: 3)
+      person1 = new_tenant
+      person2 = new_tenant
+      person3 = new_tenant
+
+      apt.add_tenant(person1)
+      apt.add_tenant(person2)
+      apt.add_tenant(person3)
+
+      expect(apt.tenants).to contain_exactly(person1, person2, person3)
+
+    end
+
     it 'doesnt let you add tenant with bad credit rating' do
       not_tenant = new_tenant(credit_score: 300)
       expect{ new_apt.add_tenant(not_tenant) }.to raise_error
     end
     # returns an error if the apartment is full
+    # it 'stops new tenants if the apartment is full' do
+
+    # end
+
   end
   # error if the tenant has a bad credit score or if tenant count is more than bedrooms
 
@@ -49,9 +67,9 @@ describe Apartment do
   # has credit rating
 
 
-  def new_apt(number: 9.75, rent: 1000, sq_ft: 400, beds: 2, baths: 1)
+  def new_apt(number: 9.75, rent: 1000, sq_ft: 400, beds: 2, baths: 1, add_bob: false)
     room = Apartment.new(number: number, rent: rent, sq_ft: sq_ft, beds: beds, baths: baths)
-    room.add_tenant(new_tenant)
+    room.add_tenant(new_tenant) if add_bob == true
     room
   end
   def new_tenant(name: "bob", age: 30, credit_score: 600)
