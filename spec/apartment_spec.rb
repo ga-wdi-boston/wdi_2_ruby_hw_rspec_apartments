@@ -15,6 +15,11 @@ describe Apartment do
   end
 
   # has tenants
+  describe '#tenants' do
+    it 'could have tenants' do
+      expect(new_apt.tenants)
+    end
+  end
   # the list of tenants cannot be modified directly
 
   # has method to add tenant
@@ -30,6 +35,8 @@ describe Apartment do
 
 
   def new_apt(number: 9.75, rent: 1000, sq_ft: 400, beds: 2, baths: 1)
+    Apartment.new(number: number, rent: rent, sq_ft: sq_ft, beds: beds, baths: baths)
+
 
   end
 end
