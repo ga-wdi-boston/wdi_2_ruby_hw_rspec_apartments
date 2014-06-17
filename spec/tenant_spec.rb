@@ -14,5 +14,20 @@ describe Tenant do
     end
   end
 
+  describe 'credit_score' do
+    it 'calculates a credit_rating using credit score' do
+      excellent = new_tenant(credit_score: 760)
+      great = new_tenant(credit_score: 725)
+      good = new_tenant(credit_score: 660)
+      mediocre = new_tenant(credit_score: 560)
+      bad = new_tenant(credit_score: 0)
+      expect(excellent.credit_rating).to eq "excellent"
+      expect(great.credit_rating).to eq "great"
+      expect(good.credit_rating).to eq "good"
+      expect(mediocre.credit_rating).to eq "mediocre"
+      expect(bad.credit_rating).to eq "bad"
+    end
+  end
+
 end
 
