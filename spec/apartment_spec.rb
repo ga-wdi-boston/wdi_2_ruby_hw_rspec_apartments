@@ -43,7 +43,6 @@ describe Apartment do
       apt.add_tenant(person3)
 
       expect(apt.tenants).to contain_exactly(person1, person2, person3)
-
     end
 
     it 'doesnt let you add tenant with bad credit rating' do
@@ -61,10 +60,20 @@ describe Apartment do
     end
 
   end
-  # error if the tenant has a bad credit score or if tenant count is more than bedrooms
 
   # has method to remove specific tenant (by reference or by name)
-  # error if there is no such person
+  describe '#remove_tenant' do
+    it 'removes a tenant by name' do
+      apt = new_apt
+      apt.add_tenant(new_tenant(name: "john"))
+      apt.add_tenant(new_tenant(name: "mary"))
+
+      apt.remove_tenant(name: "john")
+
+      expect(apt.tenants.length).to eq 1
+    end
+    # error if there is no such person
+  end
 
   # has method that evicts everybody
 

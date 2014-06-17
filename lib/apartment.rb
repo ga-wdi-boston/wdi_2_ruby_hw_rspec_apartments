@@ -16,4 +16,11 @@ class Apartment
     @tenants.push(tenant)
   end
 
+  def remove_tenant(name:)
+    if tenants.any? { |person| person.name == name }
+      tenants.delete_if { |person| person.name == name }
+    end
+  end
+
+
 end
