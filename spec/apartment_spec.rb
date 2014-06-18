@@ -19,17 +19,20 @@ describe Apartment do
     it 'adds tenant to apartment' do
       apartment = Apartment.new(101,900,50,3,1)
 
-      apartment.add_tenant('Bob',27,800)
-      apartment.add_tenant('Nick',27,725)
-
-
-      expect(apartment.tenants[0].name).to eq ('Bob')
-      expect(apartment.tenants[0].age).to eq (27)
-      expect(apartment.tenants[0].credit_score).to eq (800)
-      expect(apartment.tenants[1].name).to eq ('Nick')
-      expect(apartment.tenants[1].age).to eq (27)
-      expect(apartment.tenants[1].credit_score).to eq (725)
+      expect(apartment.add_tenant('Bob',27,800)).to eq apartment.tenants
+      expect(apartment.add_tenant('Nick',27,725)).to eq apartment.tenants
 
     end
   end
+  # describe '#add_tenant' do
+  #   it 'dont add tenat to apartment when credit = bad' do
+  #     apartment = Apartment.new(101,900,50,3,1)
+
+
+
+
+  #     expect(apartment.add_tenant('Bob',27,300))
+
+  #   end
+  # end
 end
