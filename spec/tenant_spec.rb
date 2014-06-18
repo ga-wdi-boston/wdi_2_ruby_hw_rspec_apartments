@@ -42,13 +42,22 @@ describe Apartment do
 
   describe '#add_tenant' do
     it 'should add tenant, barring exceptions' do
-
       apartment.add_tenant(jake)
       apartment.add_tenant(chris)
 
       expect(apartment.tenants).to match_array [jake, chris]
       expect{ apartment.add_tenant(reject_cred) }.to raise_error
       expect{ apartment.add_tenant(late) }.to raise_error
+    end
+  end
+
+  describe '#remove_tenant' do
+    it 'should remove specified tenant, if present' do
+      apartment.add_tenant(jake)
+      apartment.remove_tenant(jake)
+
+      expect(apartment.tenants).to eq []
+      expect{ apartment.remove_tenant(chris) }.to raise_error
     end
   end
 end

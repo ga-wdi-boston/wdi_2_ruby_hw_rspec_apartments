@@ -24,4 +24,9 @@ class Apartment
     raise "No vacancy, reject" unless tenants.count < num_beds
     @tenants << applicant
   end
+
+  def remove_tenant(tenant)
+    raise "Not a resident here" unless tenants.include?(tenant)
+    @tenants.delete(tenant)
+  end
 end
