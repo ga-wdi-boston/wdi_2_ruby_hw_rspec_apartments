@@ -38,7 +38,6 @@ describe Apartment do
       home = new_apartment(bedrooms: 0)
       expect{ home.add_tenant(zack) }.to raise_error(ArgumentError)
     end
-
   end
 
   describe '#evict' do
@@ -54,7 +53,6 @@ describe Apartment do
       home.evict(zack.object_id)
       expect(home.tenants).to eq []
     end
-
   end
 
   describe '#evict_all' do
@@ -65,7 +63,6 @@ describe Apartment do
       home.evict_all
       expect(home.tenants).to eq []
     end
-
   end
 
   describe '#avg_credit_score' do
