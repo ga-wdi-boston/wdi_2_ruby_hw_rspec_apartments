@@ -69,6 +69,17 @@ describe Flat do
     end
   end
 
+  describe '#mean_credit' do
+    it 'calculates the mean credit score of tenants in apartment' do
+      flat = Flat.new(28, 900, 800, 3, 1)
+      flat.add_tenant('Eric', 26, 650)
+      flat.add_tenant('Ian', 24, 700)
+      flat.add_tenant('Euan', 24, 750)
+
+      expect(flat.mean_credit).to eq 700
+    end
+  end
+
 
 
 

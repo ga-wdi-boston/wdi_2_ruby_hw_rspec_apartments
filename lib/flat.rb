@@ -30,6 +30,12 @@ class Flat
 
   def clear_tenants
     tenants = []
+
   end
+
+  def mean_credit
+    tenants.map(&:credit_score).reduce(:+) / 3
+  end
+
 
 end
