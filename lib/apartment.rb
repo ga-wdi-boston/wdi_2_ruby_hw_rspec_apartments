@@ -21,4 +21,8 @@ class Apartment
     raise "Tenant not found" unless tenants.map(&:name).include?(tenant)
     self.tenants.delete_if { |person| person.name == tenant }
   end
+
+  def remove_all
+    self.tenants.clear
+  end
 end

@@ -75,6 +75,20 @@ describe Apartment do
     end
   end
 
+  describe '#remove_all' do
+    it 'removes all tenants' do
+      tenant1 = new_tenant
+      tenant2 = new_tenant
+      apartment = new_apartment
+
+      apartment.add_tenant(tenant1)
+      apartment.add_tenant(tenant2)
+      apartment.remove_all
+
+      expect(apartment.tenants).to eq []
+    end
+  end
+
   # factory objects
   def new_tenant(name: 'Name', age: 88, credit_score: 800)
     tenant = Tenant.new(name: name, age: age, credit_score: credit_score)
