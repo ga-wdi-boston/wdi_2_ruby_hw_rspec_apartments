@@ -87,8 +87,17 @@ describe Apartment do
       expect(apt.tenants[0].name).to eq "joe"
     end
 
-    # it 'returns an error if there is no such person' do
-    # end
+    it 'returns an error if there is no such person' do
+      apt = new_apt
+      joe = new_tenant(name: "joe")
+      susan = new_tenant(name: "susan")
+      apt.add_tenant(joe)
+      apt.add_tenant(susan)
+
+      expect{ apt.remove_tenant(obj: mary) }.to raise_error
+      expect{ apt.remove_tenant(name: "robert") }.to raise_error
+    end
+
   end
 
   # has method that evicts everybody
