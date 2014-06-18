@@ -23,4 +23,7 @@ class Flat
     tenants << Tenant.new(name, age, credit_score)
   end
 
+  def rem_tenant(name)
+    tenants.delete_if {|tenant| tenant.name == name}
+  end
 end

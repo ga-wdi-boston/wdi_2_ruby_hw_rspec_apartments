@@ -34,6 +34,30 @@ describe Flat do
     end
   end
 
+  describe '#add_tenant' do
+    it "doesn't add tenant when bedrooms are full" do
+      flat = Flat.new(28, 900, 800, 3, 1)
+      flat.add_tenant('Eric', 26, 700)
+      flat.add_tenant('Ian', 24, 750)
+      flat.add_tenant('Euan', 24, 720)
+
+      expect{flat.add_tenant('Bro', 50, 650)}.to raise_error
+
+    end
+  end
+
+  describe '#rem_tenant' do
+    it 'removes tenant from the flat' do
+      flat = Flat.new(28, 900, 800, 3, 1)
+      flat.add_tenant('Eric', 25, 700)
+      # flat.add_tenant('Ian', 24, 750)
+      # flat.add_tenant('Euan', 24, 720)
+
+      expect(flat.rem_tenant('Eric')).to eq []
+
+    end
+  end
+
 
 
 
