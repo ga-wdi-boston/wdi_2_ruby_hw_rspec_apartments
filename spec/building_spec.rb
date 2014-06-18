@@ -24,5 +24,14 @@ describe Building do
     end
   end
 
+  describe '#remove_apartment' do
+    it 'deletes an apartment from the building' do
+      building.add_apartment(home)
+      building.add_apartment(downstairs)
+      building.remove_apartment(2)
+      expect(building.apartments).to match_array [downstairs]
+    end
+  end
+
 end
 

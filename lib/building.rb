@@ -11,4 +11,9 @@ class Building
     apartments << apartment
   end
 
+  def remove_apartment(apt_number)
+    candidate = apartments.find { |apartment| apartment.number == apt_number }
+    apartments.delete(candidate)
+  end
+
 end
