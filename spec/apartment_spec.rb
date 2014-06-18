@@ -4,6 +4,7 @@ require_relative '../lib/factories.rb'
 describe Apartment do
   let(:home) { new_apartment }
   let(:zack) { new_tenant }
+  let(:paul) { new_tenant(name: 'Paul') }
 
   include Factory
 
@@ -23,7 +24,6 @@ describe Apartment do
   describe '#add_tenant' do
 
     it 'adds tenants' do
-      paul = new_tenant
       home.add_tenant(zack)
       home.add_tenant(paul)
       expect(home.tenants).to match_array [zack, paul]
@@ -57,5 +57,24 @@ describe Apartment do
 
   end
 
+  describe '#evict_all' do
+
+    it 'evicts all tenants' do
+      home.add_tenant(zack)
+      home.add_tenant(paul)
+      home.evict_all
+      expect(home.tenants).to eq []
+    end
+
+  end
+
+  describe '#avg_credit_score' do
+
+    it 'calculates the average credit score of all tenants' do
+      home.add_tenant(zack)
+      home.add_tenant(new_tenant(credit_score: 600))
+      expect(home.avg_credit_score).to eq 650
+    end
+  end
 
 end
