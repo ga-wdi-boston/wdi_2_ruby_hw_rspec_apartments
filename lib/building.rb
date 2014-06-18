@@ -13,6 +13,7 @@ class Building
 
   def remove_apartment(apt_number)
     candidate = apartments.find { |apartment| apartment.number == apt_number }
+    raise ArgumentError, 'could not find apartment with that number' if candidate == nil
     apartments.delete(candidate)
   end
 

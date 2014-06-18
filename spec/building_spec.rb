@@ -31,6 +31,12 @@ describe Building do
       building.remove_apartment(2)
       expect(building.apartments).to match_array [downstairs]
     end
+
+    it 'raises an error if the apartment is not found' do
+      building.add_apartment(home)
+      building.add_apartment(downstairs)
+      expect { building.remove_apartment(3) }.to raise_error(ArgumentError, 'could not find apartment with that number')
+    end
   end
 
 end
