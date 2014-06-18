@@ -127,4 +127,19 @@ describe Apartment do
       expect(apartment.average_credit_score).to eq 665
     end
   end
+
+  describe '#overall_credit_rating' do
+    it 'assigns a credit rating based on the average credit score' do
+      tenants = [
+        new_tenant(credit_score: 700),
+        new_tenant(credit_score: 625),
+        new_tenant(credit_score: 670)
+      ]
+      good_apartment = new_apartment(tenants: tenants, bedrooms: 3)
+      great_apartment = new_apartment(tenants: [new_tenant(credit_score: 730)])
+
+      expect(good_apartment.overall_credit_rating).to eq :good
+      expect(great_apartment.overall_credit_rating).to eq :great
+    end
+  end
 end

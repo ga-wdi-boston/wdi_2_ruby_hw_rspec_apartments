@@ -38,4 +38,8 @@ class Apartment
   def average_credit_score
     @tenants.map(&:credit_score).reduce(0, &:+) / @tenants.count.to_f
   end
+
+  def overall_credit_rating
+    CreditRating.evaluate(average_credit_score)
+  end
 end
