@@ -29,9 +29,13 @@ describe Apartment do
     it 'is able to add a tenant' do
       fred = new_tenant
       bad_tenant = new_tenant(credit_score: 3)
+      george = new_tenant
+      harry = new_tenant
       ap.add_tenant(fred)
       expect(ap.tenants).to eq [fred]
       expect{ ap.add_tenant(bad_tenant) }.to raise_error Apartment::BadCreditError
+      ap.add_tenant(george)
+      expect{ ap.add_tenant(harry) }.to raise_error Apartment::OverfillError
     end
   end
 

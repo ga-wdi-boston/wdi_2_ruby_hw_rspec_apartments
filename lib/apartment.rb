@@ -20,9 +20,11 @@ class Apartment
   end
 
     def add_tenant(tenant)
-      raise BadCreditError if(tenant.credit_rating == :bad)
+      raise BadCreditError if tenant.credit_rating == :bad
+      raise OverfillError if tenants.count >= num_of_bedrooms
       @tenants += [tenant]
     end
 
     class BadCreditError < StandardError; end
+    class OverfillError < StandardError; end
 end
