@@ -71,8 +71,24 @@ describe Apartment do
       apt.remove_tenant(name: "john")
 
       expect(apt.tenants.length).to eq 1
+      expect(apt.tenants[0].name).to eq "mary"
     end
-    # error if there is no such person
+
+    it 'removes a tenant by object reference' do
+      apt = new_apt
+      joe = new_tenant(name: "joe")
+      susan = new_tenant(name: "susan")
+      apt.add_tenant(joe)
+      apt.add_tenant(susan)
+
+      apt.remove_tenant(obj: susan)
+
+      expect(apt.tenants.length).to eq 1
+      expect(apt.tenants[0].name).to eq "joe"
+    end
+
+    # it 'returns an error if there is no such person' do
+    # end
   end
 
   # has method that evicts everybody
