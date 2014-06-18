@@ -17,4 +17,8 @@ class Building
   def sq_ft
     apartments.map(&:sq_ft).reduce(0, &:+)
   end
+
+  def revenue
+    apartments.map(&:rent).reduce(0, &:+)
+  end
 end
