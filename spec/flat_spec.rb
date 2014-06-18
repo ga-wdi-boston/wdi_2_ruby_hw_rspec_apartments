@@ -19,21 +19,22 @@ describe Flat do
 
   describe '#add_tenant' do
     it 'adds a tenant to the flat' do
-      tenant1 = Tenant.new('Eric', 26, 500)
-      tenant2 = Tenant.new('Ian', 26, 750)
       flat = Flat.new(28, 900, 800, 3, 1)
 
-      flat.add_tenant('Eric', 26, 700)
-      flat.add_tenant('Ian', 24, 500)
 
-      expect(flat.tenants[0].name).to eq 'Eric'
-      expect(flat.tenants[0].age).to eq 26
-      expect(flat.tenants[0].credit_score).to eq 700
-      expect(flat.tenants[1].name).to eq 'Ian'
-      expect(flat.tenants[1].age).to eq 24
-      expect(flat.tenants[1].credit_score).to eq 500
+      expect(flat.add_tenant('Eric', 26, 700)).to eq flat.tenants
+
     end
   end
+
+  describe '#add_tenant' do
+    it "doesn't add tenant when credit score is too low" do
+      apartment = Flat.new(28, 900, 800, 3, 1)
+      expect{flat.add_tenant('Eric', 26, 500)}.to raise_error
+    end
+  end
+
+
 
 
 end
