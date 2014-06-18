@@ -34,7 +34,7 @@ describe Apartment do
         apt1.add_tenant(al)
         apt1.remove_all_tenants
 
-        expect{ Apartment.new('Al', []) }.to eq 0
+        expect(apt1.remove_all_tenants).to eq []
       end
     end
 

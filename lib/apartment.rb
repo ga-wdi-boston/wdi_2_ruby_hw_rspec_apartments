@@ -36,7 +36,7 @@ class Apartment
     end
   end
 
-  def remove_all
+  def remove_all_tenants
     @tenants = []
   end
 
