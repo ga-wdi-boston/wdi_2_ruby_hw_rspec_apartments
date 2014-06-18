@@ -79,6 +79,32 @@ describe Building do
     end
   end
 
+  describe '#apartments_by_credit_rating' do
+
+    it 'returns apartments grouped by credit rating' do
+      apartment1 = new_apartment
+      tenant1 = new_tenant
+      tenant2 = new_tenant
+      tenant2.credit_score = 700
+      apartment1.add_tenant(tenant1)
+      apartment1.add_tenant(tenant2)
+
+      apartment2 = new_apartment
+      tenant3 = new_tenant
+      tenant4 = new_tenant
+      tenant3.credit_score = 600
+      tenant4.credit_score = 650
+      apartment2.add_tenant(tenant3)
+      apartment2.add_tenant(tenant4)
+
+      building.add_apartment(apartment1)
+      building.add_apartment(apartment2)
+
+      result = { 'great' => [apartment1], 'mediocre' => [apartment2] }
+      expect(building.apartments_by_credit_rating).to eq result
+    end
+  end
+
   # factory objects
   def new_tenant(name: 'Name', age: 88, credit_score: 800)
     tenant = Tenant.new(name: name, age: age, credit_score: credit_score)

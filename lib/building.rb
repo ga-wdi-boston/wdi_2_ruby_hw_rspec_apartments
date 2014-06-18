@@ -25,4 +25,8 @@ class Building
   def tenants_list
     apartments.map(&:tenants).flatten.map(&:name).uniq
   end
+
+  def apartments_by_credit_rating
+    apartments.group_by(&:credit_rating)
+  end
 end
