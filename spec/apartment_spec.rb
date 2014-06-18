@@ -31,12 +31,12 @@ describe Apartment do
 
     it 'raises an error if the tenant has a bad credit_rating' do
       zack = new_tenant(credit_score: 500)
-      expect{ home.add_tenant(zack) }.to raise_error(ArgumentError)
+      expect{ home.add_tenant(zack) }.to raise_error(ArgumentError, 'tenant has insufficient credit rating')
     end
 
     it 'raises an error if the tenant has a bad credit_rating' do
       home = new_apartment(bedrooms: 0)
-      expect{ home.add_tenant(zack) }.to raise_error(ArgumentError)
+      expect{ home.add_tenant(zack) }.to raise_error(ArgumentError, 'apartment is full')
     end
   end
 
@@ -52,6 +52,11 @@ describe Apartment do
       home.add_tenant(zack)
       home.evict(zack.object_id)
       expect(home.tenants).to eq []
+    end
+
+    it 'returns an error if tenant not found' do
+      home.add_tenant(zack)
+      expect { home.evict(paul.object_id) }.to raise_error(ArgumentError, 'could not find tenant with that name/object_id')
     end
   end
 

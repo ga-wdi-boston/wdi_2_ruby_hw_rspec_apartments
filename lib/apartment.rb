@@ -13,8 +13,8 @@ class Apartment
   end
 
   def add_tenant(tenant)
-    raise ArgumentError if tenant.credit_rating == 'bad'
-    raise ArgumentError if tenants.length == self.bedrooms
+    raise ArgumentError, 'tenant has insufficient credit rating' if tenant.credit_rating == 'bad'
+    raise ArgumentError, 'apartment is full' if tenants.length == self.bedrooms
     self.tenants << tenant
   end
 
@@ -22,7 +22,7 @@ class Apartment
     candidate = tenants.find { |i| i.name.casecmp(tenant) } if tenant.class == String
     candidate = tenants.find { |i| i.object_id == tenant } if tenant.class == Fixnum
     if !tenants.delete(candidate)
-      raise ArgumentError
+      raise ArgumentError, 'could not find tenant with that name/object_id'
     end
   end
 
