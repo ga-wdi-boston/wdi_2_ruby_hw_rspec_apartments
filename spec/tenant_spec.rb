@@ -79,4 +79,13 @@ describe Apartment do
       expect(apartment.avg_cred).to eq 650
     end
   end
+
+  describe '#cred_rating' do
+    it 'should lookup rating based on avg_cred' do
+      apartment.add_tenant(jake)
+      apartment.add_tenant(chris)
+
+      expect(apartment.cred_rating).to eq 'mediocre'
+    end
+  end
 end

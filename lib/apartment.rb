@@ -37,4 +37,9 @@ class Apartment
   def avg_cred
     tenants.map { |t| t.cred }.reduce(0, &:+) / tenants.count
   end
+
+  def cred_rating
+    avg = avg_cred
+    CRED_RATINGS.each { |v, r| return r if avg >= v }
+  end
 end
