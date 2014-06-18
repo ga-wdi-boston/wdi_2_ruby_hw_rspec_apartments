@@ -46,4 +46,11 @@ describe Building do
     end
   end
 
+  describe '#sq_footage' do
+    it 'should calculate total sq footage based on apartments sq_feet total' do
+      building.add_appt(appt: apartment)
+
+      expect(building.sq_footage).to eq 5000
+    end
+  end
 end

@@ -25,4 +25,8 @@ class Building
     end
   end
 
+  def sq_footage
+    apartments.map{|appt| appt.sq_feet}.reduce(0, &:+)
+  end
+
 end
