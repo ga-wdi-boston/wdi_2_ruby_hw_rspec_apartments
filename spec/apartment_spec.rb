@@ -104,4 +104,14 @@ describe Apartment do
       expect{ apartment.remove_tenant('Leeroy') }.to raise_error Apartment::TenantNotFound
     end
   end
+
+  describe '#remove_all_tenants' do
+    it 'removes all tenants from the apartment' do
+      apartment = new_apartment(tenants: [new_tenant, new_tenant], bedrooms: 2)
+
+      apartment.remove_all_tenants
+
+      expect(apartment.tenants).to be_empty
+    end
+  end
 end

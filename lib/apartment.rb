@@ -30,4 +30,8 @@ class Apartment
     raise TenantNotFound if target_tenant.nil?
     @tenants.delete(target_tenant)
   end
+
+  def remove_all_tenants
+    @tenants.clear
+  end
 end
