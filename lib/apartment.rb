@@ -26,4 +26,8 @@ class Apartment
     self.tenants = []
   end
 
+  def avg_credit_score
+    tenants.map(&:credit_score).reduce(0, &:+) / tenants.length
+  end
+
 end
