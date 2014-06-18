@@ -64,7 +64,9 @@ describe Apartment do
       apt1.add_tenant(dave)
       apt1.add_tenant(john)
 
-      expect { Apartment.new(apt1, []).credit_score }.to eq 700
+      apt1.credit_score
+
+      expect(apt1.credit_score).to eq 700
     end
   end
 end
