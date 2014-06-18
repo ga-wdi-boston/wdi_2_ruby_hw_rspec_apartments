@@ -8,4 +8,9 @@ class Building
     @address = address
     @apartments = []
   end
+
+  def add_appt(appt)
+    @apartments << appt
+  end
+
 end
