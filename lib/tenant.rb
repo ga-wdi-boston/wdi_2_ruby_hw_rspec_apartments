@@ -6,16 +6,20 @@ class Tenant
   end
 
   def credit_rating
+    Tenant.credit_rating_from_score(credit_score)
+  end
+
+  def self.credit_rating_from_score(credit)
     case
-    when credit_score >= 760
+    when credit >= 760
       :excellent
-    when credit_score >= 725
+    when credit >= 725
       :great
-    when credit_score >= 660
+    when credit >= 660
       :good
-    when credit_score >= 560
+    when credit >= 560
       :mediocre
-    when credit_score < 560
+    when credit < 560
       :bad
     end
   end

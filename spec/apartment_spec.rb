@@ -46,6 +46,29 @@ describe Apartment do
       expect(ap.tenants).to eq []
     end
   end
+  describe '#average_credit_score' do
+    it 'calculates the average credit score of all tenants' do
+      tenant_560 = new_tenant(credit_score: 560)
+      tenant_724 = new_tenant(credit_score: 724)
+      ap.add_tenant(tenant_724)
+      ap.add_tenant(tenant_560)
+      expect(ap.average_credit_score).to eq 642
+      ap.remove_all_tenants
+      ap.add_tenant(new_tenant(credit_score:560))
+      ap.add_tenant(new_tenant(credit_score:723))
+      expect(ap.average_credit_score).to eq 641.5
+    end
+  end
+  describe '#average_credit_rating' do
+    it 'calculates the average credit rating from all tenants' do
+      tenant_560 = new_tenant(credit_score: 560)
+      tenant_724 = new_tenant(credit_score: 724)
+      ap.add_tenant(tenant_724)
+      ap.add_tenant(tenant_560)
+      expect(ap.average_credit_rating).to eq :mediocre
+    end
+  end
+
 
   def new_tenant(name:'fred', age: 1, credit_score: 700)
     Tenant.new(name: name, age: age, credit_score: credit_score)
