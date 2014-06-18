@@ -89,6 +89,20 @@ describe Apartment do
     end
   end
 
+  describe '#credit_score' do
+    it 'averages the credit score of all tenants' do
+      tenant1 = new_tenant
+      tenant2 = new_tenant
+      tenant2.credit_score = 700
+      apartment = new_apartment
+
+      apartment.add_tenant(tenant1)
+      apartment.add_tenant(tenant2)
+
+      expect(apartment.credit_score).to eq 750
+    end
+  end
+
   # factory objects
   def new_tenant(name: 'Name', age: 88, credit_score: 800)
     tenant = Tenant.new(name: name, age: age, credit_score: credit_score)

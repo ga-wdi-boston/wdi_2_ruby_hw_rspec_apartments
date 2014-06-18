@@ -25,4 +25,8 @@ class Apartment
   def remove_all
     self.tenants.clear
   end
+
+  def credit_score
+    tenants.map(&:credit_score).reduce(0, &:+) / tenants.length
+  end
 end
