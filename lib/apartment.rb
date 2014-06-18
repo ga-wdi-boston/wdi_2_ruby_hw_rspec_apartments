@@ -12,11 +12,16 @@ class Apartment
                     560 => 'mediocre',
                     0 => 'bad'
                   }
-  attr_reader :number, :sq_feet, :num_beds, :num_baths, :rent
+  attr_reader :tenants, :number, :sq_feet, :num_beds, :num_baths, :rent
 
   def initialize(number:, sq_feet:, num_beds:, num_baths:, rent:)
     @number, @sq_feet, @num_beds, @num_baths, @rent = number, sq_feet, num_beds, num_baths, rent
-
+    @tenants = []
   end
 
+  def add_tenant(applicant)
+    raise "Bad credit, reject" unless applicant.cred >= 560
+    raise "No vacancy, reject" unless tenants.count < num_beds
+    @tenants << applicant
+  end
 end
