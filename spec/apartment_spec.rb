@@ -13,7 +13,6 @@ describe Apartment do
       expect(apartment.bathrooms).to eq 1
     end
   end
-
 end
 
 
