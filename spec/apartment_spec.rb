@@ -24,15 +24,21 @@ describe Apartment do
 
     end
   end
-  # describe '#add_tenant' do
-  #   it 'dont add tenat to apartment when credit = bad' do
-  #     apartment = Apartment.new(101,900,50,3,1)
 
+  describe '#add_tenant' do
+    it 'dont add tenant to apartment when credit = bad' do
+      apartment = Apartment.new(101,900,50,3,1)
+      expect{apartment.add_tenant('Bob',27,300)}.to raise_error
+    end
+  end
 
-
-
-  #     expect(apartment.add_tenant('Bob',27,300))
-
-  #   end
-  # end
+  describe '#add_tenant' do
+    it 'dont add tenant when tenants # exceed bedroom # ' do
+      apartment = Apartment.new(101,900,50,3,1)
+      apartment.add_tenant('Bob',27,900)
+      apartment.add_tenant('Tob',27,900)
+      apartment.add_tenant('Mob',27,900)
+      expect{apartment.add_tenant('Fob',27,900)}.to raise_error
+    end
+  end
 end
