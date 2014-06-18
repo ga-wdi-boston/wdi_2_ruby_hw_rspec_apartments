@@ -41,4 +41,12 @@ describe Apartment do
       expect{apartment.add_tenant('Fob',27,900)}.to raise_error
     end
   end
+
+  describe '#delete_tenant' do
+    it 'delete tenant' do
+      apartment = Apartment.new(101,900,50,3,1)
+      apartment.add_tenant('Bob',27,900)
+      expect(apartment.delete_tenant('Bob')).to eq []
+    end
+  end
 end

@@ -19,4 +19,7 @@ class Apartment
     tenants << Tenant.new(name,age,credit_score)
   end
 
+  def delete_tenant(name)
+    tenants.delete_if {|tenant| tenant.name == name}
+  end
 end
