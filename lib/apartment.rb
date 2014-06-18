@@ -26,4 +26,8 @@ class Apartment
   def clear_tenant
     tenants.clear
   end
+
+  def avg_credit
+    tenants.map(&:credit_score).reduce(0, :+) /3
+  end
 end

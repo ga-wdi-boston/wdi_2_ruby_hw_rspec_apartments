@@ -57,4 +57,15 @@ describe Apartment do
       expect(apartment.clear_tenant).to eq []
     end
   end
+
+  describe '#avg_credit' do
+    it 'calculate average credit_score' do
+      apartment = Apartment.new(101,900,50,3,1)
+      apartment.add_tenant('Bob',27,800)
+      apartment.add_tenant('Bob',27,900)
+      apartment.add_tenant('Bob',27,700)
+      expect(apartment.avg_credit).to eq 800
+    end
+  end
+
 end
