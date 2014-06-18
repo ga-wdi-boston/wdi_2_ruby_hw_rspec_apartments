@@ -113,8 +113,19 @@ describe Apartment do
   end
 
   # has average credit score
-  # has credit rating
+  describe '#credit_score' do
+    it 'has an average credit score' do
+      apt = new_apt(beds: 3)
+      apt.add_tenant(new_tenant(credit_score: 800))
+      apt.add_tenant(new_tenant(credit_score: 600))
+      apt.add_tenant(new_tenant(credit_score: 700))
 
+      expect(apt.credit_score).to eq 700
+
+    end
+  end
+
+  # has credit rating
 
   def new_apt(number: 9.75, rent: 1000, sq_ft: 400, beds: 2, baths: 1, add_bob: false)
     room = Apartment.new(number: number, rent: rent, sq_ft: sq_ft, beds: beds, baths: baths)

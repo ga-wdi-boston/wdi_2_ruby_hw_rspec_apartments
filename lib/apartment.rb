@@ -30,4 +30,12 @@ class Apartment
     @tenants = []
   end
 
+  def credit_score
+    if tenants.empty?
+      nil
+    else
+      tenants.map{ |person| person.credit_score }.reduce(0, &:+)/tenants.length
+    end
+  end
+
 end
