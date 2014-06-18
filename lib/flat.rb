@@ -24,6 +24,12 @@ class Flat
   end
 
   def rem_tenant(name)
+
     tenants.delete_if {|tenant| tenant.name == name}
   end
+
+  def clear_tenants
+    tenants = []
+  end
+
 end

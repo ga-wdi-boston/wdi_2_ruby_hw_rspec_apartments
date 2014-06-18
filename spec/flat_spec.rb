@@ -29,7 +29,7 @@ describe Flat do
 
   describe '#add_tenant' do
     it "doesn't add tenant when credit score is too low" do
-      apartment = Flat.new(28, 900, 800, 3, 1)
+      flat = Flat.new(28, 900, 800, 3, 1)
       expect{flat.add_tenant('Eric', 26, 500)}.to raise_error
     end
   end
@@ -55,6 +55,17 @@ describe Flat do
 
       expect(flat.rem_tenant('Eric')).to eq []
 
+    end
+  end
+
+  describe '#clear_tenants'do
+    it 'removes all tenants from the flat' do
+      flat = Flat.new(28, 900, 800, 3, 1)
+      flat.add_tenant('Eric', 26, 770)
+      flat.add_tenant('Ian', 24, 700)
+      flat.add_tenant('Euan', 24, 800)
+
+      expect(flat.clear_tenants).to eq []
     end
   end
 
