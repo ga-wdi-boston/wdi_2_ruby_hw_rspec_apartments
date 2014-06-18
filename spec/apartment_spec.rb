@@ -41,4 +41,31 @@ describe Apartment do
       expect(apartment.tenants).to be_empty
     end
   end
+
+  describe '#add_tenant' do
+    it 'adds a tenant to the apartment' do
+      apartment = new_apartment
+      tenant = new_tenant
+
+      apartment.add_tenant(tenant)
+
+      expect(apartment.tenants).to contain_exactly(tenant)
+    end
+
+    it 'cannot add a tenant if there are no free bedrooms' do
+      apartment = new_apartment(bedrooms: 2)
+
+      apartment.add_tenant(new_tenant)
+      apartment.add_tenant(new_tenant)
+
+      expect{ apartment.add_tenant(new_tenant) }.to raise_error Apartment::FullError
+    end
+
+    it 'cannot add a tenant with a bad credit rating' do
+      apartment = new_apartment
+      tenant = new_tenant(credit_score: 420)
+
+      expect{ apartment.add_tenant(tenant) }.to raise_error Apartment::BadCreditError
+    end
+  end
 end
