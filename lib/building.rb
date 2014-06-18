@@ -26,4 +26,8 @@ class Building
     apartments.map(&:rent).reduce(0, &:+)
   end
 
+  def tenants
+    apartments.map(&:tenants).flatten
+  end
+
 end

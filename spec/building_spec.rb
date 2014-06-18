@@ -63,8 +63,19 @@ describe Building do
     end
   end
 
-
-
+  describe '#tenants' do
+    it 'returns a list of all tenants in the building' do
+      zack = new_tenant
+      paul = new_tenant(name: 'Paul')
+      home.add_tenant(zack)
+      home.add_tenant(paul)
+      building.add_apartment(home)
+      brian = new_tenant(name: 'Brian')
+      downstairs.add_tenant(brian)
+      building.add_apartment(downstairs)
+      expect(building.tenants).to match_array [zack, paul, brian]
+    end
+  end
 
 
 
