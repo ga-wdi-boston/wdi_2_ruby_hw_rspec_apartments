@@ -29,4 +29,8 @@ class Apartment
     raise "Not a resident here" unless tenants.include?(tenant)
     @tenants.delete(tenant)
   end
+
+  def remove_all
+    @tenants.clear
+  end
 end

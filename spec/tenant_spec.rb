@@ -60,4 +60,14 @@ describe Apartment do
       expect{ apartment.remove_tenant(chris) }.to raise_error
     end
   end
+
+  describe '#remove_all' do
+    it 'should clear out all tenants' do
+      apartment.add_tenant(jake)
+      apartment.add_tenant(chris)
+      apartment.remove_all
+
+      expect(apartment.tenants).to eq []
+    end
+  end
 end
