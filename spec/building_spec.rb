@@ -26,9 +26,24 @@ describe Building do
 
   describe '#add_appt' do
     it 'should add an apartment to the building' do
-      building.add_appt(apartment)
+      building.add_appt(appt: apartment)
 
       expect(building.apartments).to eq [apartment]
     end
   end
+
+  describe '#remove_appt' do
+    it 'should remove an apartment if it is found by number, is empty OR is an eviction' do
+      apartment.add_tenant(jake)
+      building.add_appt(appt: apartment)
+
+      expect{building.remove_appt(num: 0)}.to raise_error
+      expect{building.remove_appt(num: 1)}.to raise_error
+
+      building.remove_appt(num: 1, evict: true)
+
+      expect(building.apartments).to eq []
+    end
+  end
+
 end
