@@ -65,20 +65,26 @@ describe Building do
 
   describe '#tenants' do
     it 'returns a list of all tenants in the building' do
-      zack = new_tenant
-      paul = new_tenant(name: 'Paul')
-      home.add_tenant(zack)
-      home.add_tenant(paul)
+      home.add_tenant(zack = new_tenant)
+      home.add_tenant(paul = new_tenant)
       building.add_apartment(home)
-      brian = new_tenant(name: 'Brian')
-      downstairs.add_tenant(brian)
+      downstairs.add_tenant(brian = new_tenant)
       building.add_apartment(downstairs)
       expect(building.tenants).to match_array [zack, paul, brian]
     end
   end
 
-
-
-
+  describe '#by_credit score' do
+    it 'returns the apartments grouped by credit rating and sorted by credit score' do
+      home.add_tenant(new_tenant)
+      building.add_apartment(home)
+      downstairs.add_tenant(new_tenant(credit_score: 730))
+      building.add_apartment(downstairs)
+      basement = new_apartment
+      basement.add_tenant(new_tenant(credit_score: 750))
+      building.add_apartment(basement)
+      expect(building.by_credit_score).to eq ({'great' => [basement, downstairs], 'good' => [home]})
+    end
+  end
 end
 

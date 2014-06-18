@@ -13,7 +13,6 @@ module Factory
 
   def new_building(address: '241 Washington St.')
     Building.new(address: address)
-    # [new_apartment, new_apartment(number: 1, rent: 2200, square_footage: 500, bedrooms: 2, bathrooms: 1)]
   end
 
 end
