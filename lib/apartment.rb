@@ -1,6 +1,7 @@
 class Apartment
   class FullError < StandardError; end
   class BadCreditError < StandardError; end
+  class TenantNotFound < StandardError; end
 
   attr_reader :number, :rent, :square_feet, :bedrooms, :bathrooms
 
@@ -19,5 +20,14 @@ class Apartment
     raise BadCreditError if tenant.credit_rating == :bad
 
     @tenants << tenant
+  end
+
+  def remove_tenant(tenant_or_name)
+    target_tenant = @tenants.find do |tenant|
+      tenant == tenant_or_name || tenant.name == tenant_or_name
+    end
+
+    raise TenantNotFound if target_tenant.nil?
+    @tenants.delete(target_tenant)
   end
 end

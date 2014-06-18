@@ -2,8 +2,10 @@ require_relative '../lib/apartment'
 require_relative '../lib/tenant'
 
 describe Apartment do
-  def new_apartment(number: '1B', rent: 2000, square_feet: 600, bedrooms: 1, bathrooms: 1)
-    Apartment.new(number: number, rent: rent, square_feet: square_feet, bedrooms: bedrooms, bathrooms: bathrooms)
+  def new_apartment(number: '1B', rent: 2000, square_feet: 600, bedrooms: 1, bathrooms: 1, tenants: [])
+    apartment = Apartment.new(number: number, rent: rent, square_feet: square_feet, bedrooms: bedrooms, bathrooms: bathrooms)
+    tenants.each{ |tenant| apartment.add_tenant(tenant) }
+    apartment
   end
 
   def new_tenant(name: 'x', age: 30, credit_score: 700)
@@ -66,6 +68,40 @@ describe Apartment do
       tenant = new_tenant(credit_score: 420)
 
       expect{ apartment.add_tenant(tenant) }.to raise_error Apartment::BadCreditError
+    end
+  end
+
+  describe '#remove_tenant' do
+    it 'removes a tenant by object reference' do
+      first_tenant = new_tenant
+      second_tenant = new_tenant
+      apartment = new_apartment(tenants: [first_tenant, second_tenant], bedrooms: 2)
+
+      apartment.remove_tenant(first_tenant)
+
+      expect(apartment.tenants).to contain_exactly(second_tenant)
+    end
+
+    it 'removes a tenant by name' do
+      fred = new_tenant(name: 'Fred')
+      keith = new_tenant(name: 'Keith')
+      apartment = new_apartment(tenants: [fred, keith], bedrooms: 2)
+
+      apartment.remove_tenant('Keith')
+
+      expect(apartment.tenants).to contain_exactly(fred)
+    end
+
+    it 'errors if a tenant is not found by object reference' do
+      apartment = new_apartment(tenants: [new_tenant])
+
+      expect{ apartment.remove_tenant(new_tenant) }.to raise_error Apartment::TenantNotFound
+    end
+
+    it 'errors if a tenant is not found by name' do
+      apartment = new_apartment(tenants: [new_tenant(name: 'Larry')])
+
+      expect{ apartment.remove_tenant('Leeroy') }.to raise_error Apartment::TenantNotFound
     end
   end
 end
