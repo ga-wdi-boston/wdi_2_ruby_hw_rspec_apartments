@@ -10,6 +10,7 @@ describe Tenant do
       expect(tenant.credit_score).to eq 800
     end
   end
+
   describe '#credit_rating' do
     it '#check credit score' do
       tenant = Tenant.new('Bob',27,800)
@@ -23,7 +24,6 @@ describe Tenant do
       expect(tenant3.credit_rating).to eq 'good'
       expect(tenant4.credit_rating).to eq 'mediocre'
       expect(tenant5.credit_rating).to eq 'bad'
-
 
     end
   end
