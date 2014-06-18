@@ -1,5 +1,6 @@
 require_relative '../lib/tenant'
 
+
 describe Tenant do
 
   let(:tenant) { new_tenant }
