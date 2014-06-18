@@ -61,4 +61,14 @@ describe Building do
       expect(building.monthly_revenue).to eq 2000
     end
   end
+
+  describe '#tenants' do
+    it 'should return a list of ALL tenants' do
+      apartment.add_tenant(chris)
+      apartment.add_tenant(jake)
+      building.add_appt(appt: apartment)
+
+      expect(building.tenants).to eq [chris, jake]
+    end
+  end
 end

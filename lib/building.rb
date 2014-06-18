@@ -33,4 +33,9 @@ class Building
     apartments.map{|appt| appt.rent}.reduce(0, &:+)
   end
 
+  def tenants
+    all = []
+    apartments.map {|appt| all.concat(appt.tenants) }
+    all
+  end
 end
