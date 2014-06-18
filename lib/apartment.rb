@@ -13,4 +13,12 @@ class Apartment
     self.tenants << tenant
   end
 
+  def evict(tenant)
+    candidate = tenants.find { |i| i.name.casecmp(tenant) } if tenant.class == String
+    candidate = tenants.find { |i| i.object_id == tenant } if tenant.class == Fixnum
+    if !tenants.delete(candidate)
+      raise ArgumentError
+    end
+  end
+
 end
