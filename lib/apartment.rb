@@ -1,4 +1,8 @@
+require_relative 'credit_rating_chart.rb'
+
 class Apartment
+
+  include CreditConversion
 
   attr_reader :number, :rent, :square_footage, :bedrooms, :bathrooms
   attr_accessor :tenants
@@ -28,6 +32,11 @@ class Apartment
 
   def avg_credit_score
     tenants.map(&:credit_score).reduce(0, &:+) / tenants.length
+  end
+
+  def credit_rating
+    CREDIT_RATINGS.each { |rating, score| return rating.to_s if avg_credit_score >= score }
+    "bad"
   end
 
 end

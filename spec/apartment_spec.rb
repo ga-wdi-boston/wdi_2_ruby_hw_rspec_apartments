@@ -77,4 +77,13 @@ describe Apartment do
     end
   end
 
+  describe '#credit_rating' do
+
+    it 'calculates the average credit rating using all tenants credit scores' do
+      home.add_tenant(new_tenant(credit_score: 600))
+      home.add_tenant(new_tenant(credit_score: 730))
+      expect(home.credit_rating).to eq 'good'
+    end
+  end
+
 end
