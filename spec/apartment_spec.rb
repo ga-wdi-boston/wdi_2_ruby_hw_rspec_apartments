@@ -49,4 +49,12 @@ describe Apartment do
       expect(apartment.delete_tenant('Bob')).to eq []
     end
   end
+  describe '#clear_tenant' do
+    it 'clear tenant' do
+      apartment = Apartment.new(101,900,50,3,1)
+      apartment.add_tenant('Bob',27,900)
+      apartment.add_tenant('Bob',27,900)
+      expect(apartment.clear_tenant).to eq []
+    end
+  end
 end

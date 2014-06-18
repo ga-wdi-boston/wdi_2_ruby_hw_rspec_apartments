@@ -22,4 +22,8 @@ class Apartment
   def delete_tenant(name)
     tenants.delete_if {|tenant| tenant.name == name}
   end
+
+  def clear_tenant
+    tenants.clear
+  end
 end
