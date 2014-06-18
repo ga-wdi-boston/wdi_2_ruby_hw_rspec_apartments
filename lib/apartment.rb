@@ -30,4 +30,20 @@ class Apartment
   def avg_credit
     tenants.map(&:credit_score).reduce(0, :+) /3
   end
+
+
+  def credit_rating
+    case
+    when avg_credit >= 760
+      'excellent'
+    when avg_credit >= 725
+      'great'
+    when avg_credit >= 660
+      'good'
+    when avg_credit >= 560
+      'mediocre'
+    when avg_credit < 560
+      'bad'
+    end
+  end
 end

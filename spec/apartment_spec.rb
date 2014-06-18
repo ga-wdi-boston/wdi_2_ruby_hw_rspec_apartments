@@ -68,4 +68,14 @@ describe Apartment do
     end
   end
 
+  describe '#credit_rating' do
+    it 'calculate average credit_score' do
+      apartment = Apartment.new(101,900,50,3,1)
+      apartment.add_tenant('Bob',27,800)
+      apartment.add_tenant('Bob',27,900)
+      apartment.add_tenant('Bob',27,700)
+      expect(apartment.credit_rating).to eq 'excellent'
+    end
+  end
+
 end
