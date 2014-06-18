@@ -29,6 +29,19 @@ describe Building do
     end
   end
 
+  describe '#sq_ft' do
+    it 'returns square footage of building' do
+      apartment1 = new_apartment
+      apartment2 = new_apartment
+      apartment3 = new_apartment
+      building.add_apartment(apartment1)
+      building.add_apartment(apartment2)
+      building.add_apartment(apartment3)
+
+      expect(building.sq_ft).to eq 6000
+    end
+  end
+
   # factory object
   def new_apartment(number: 1, rent: 1000, sq_ft: 2000, num_bedrooms: 2, num_bathrooms: 2)
     apartment = Apartment.new(number: number, rent: rent, sq_ft: sq_ft, num_bedrooms: num_bedrooms, num_bathrooms: num_bathrooms)
