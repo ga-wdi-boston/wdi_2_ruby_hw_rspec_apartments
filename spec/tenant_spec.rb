@@ -17,7 +17,6 @@ describe Tenant do
   end
 
   # has a credit rating calculated from chart
-
   describe '#credit_rating' do
     it 'gives the quality of the credit score' do
 

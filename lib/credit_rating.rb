@@ -1,6 +1,7 @@
 module CreditRating
 
   def credit_rating
+
     case self.credit_score
     when nil
       nil
