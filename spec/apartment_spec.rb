@@ -58,7 +58,6 @@ describe Apartment do
       end
       expect{ apt.add_tenant(new_tenant) }.to raise_error
     end
-
   end
 
   # has method to remove specific tenant (by reference or by name)
@@ -101,6 +100,17 @@ describe Apartment do
   end
 
   # has method that evicts everybody
+  describe '#evict' do
+    it 'removes all tenants in an apartment' do
+      apt = new_apt
+      apt.add_tenant(new_tenant(name: "john"))
+      apt.add_tenant(new_tenant(name: "mary"))
+
+      apt.evict
+
+      expect(apt.tenants.length).to eq 0
+    end
+  end
 
   # has average credit score
   # has credit rating

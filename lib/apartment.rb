@@ -26,5 +26,8 @@ class Apartment
     end
   end
 
+  def evict
+    @tenants = []
+  end
 
 end
