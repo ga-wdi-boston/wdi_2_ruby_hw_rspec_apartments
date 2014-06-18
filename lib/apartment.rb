@@ -25,6 +25,10 @@ class Apartment
       @tenants += [tenant]
     end
 
+    def remove_all_tenants
+      @tenants = []
+    end
+
     class BadCreditError < StandardError; end
     class OverfillError < StandardError; end
 end

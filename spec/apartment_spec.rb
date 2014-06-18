@@ -38,6 +38,14 @@ describe Apartment do
       expect{ ap.add_tenant(harry) }.to raise_error Apartment::OverfillError
     end
   end
+  describe '#remove_all_tenants' do
+    it 'removes all tenants' do
+      ap.add_tenant(new_tenant)
+      ap.add_tenant(new_tenant)
+      ap.remove_all_tenants
+      expect(ap.tenants).to eq []
+    end
+  end
 
   def new_tenant(name:'fred', age: 1, credit_score: 700)
     Tenant.new(name: name, age: age, credit_score: credit_score)
