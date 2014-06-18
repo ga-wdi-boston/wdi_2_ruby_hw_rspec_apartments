@@ -29,4 +29,8 @@ class Building
     apartments.map{|appt| appt.sq_feet}.reduce(0, &:+)
   end
 
+  def monthly_revenue
+    apartments.map{|appt| appt.rent}.reduce(0, &:+)
+  end
+
 end

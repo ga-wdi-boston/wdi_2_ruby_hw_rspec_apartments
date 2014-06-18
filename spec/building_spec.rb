@@ -53,4 +53,12 @@ describe Building do
       expect(building.sq_footage).to eq 5000
     end
   end
+
+  describe '#monthly_revenue' do
+    it 'should calculate total revenue based on apartments rent' do
+      building.add_appt(appt: apartment)
+
+      expect(building.monthly_revenue).to eq 2000
+    end
+  end
 end
