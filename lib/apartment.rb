@@ -33,4 +33,8 @@ class Apartment
   def remove_all
     @tenants.clear
   end
+
+  def avg_cred
+    tenants.map { |t| t.cred }.reduce(0, &:+) / tenants.count
+  end
 end

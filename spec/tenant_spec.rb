@@ -70,4 +70,13 @@ describe Apartment do
       expect(apartment.tenants).to eq []
     end
   end
+
+  describe '#avg_cred' do
+    it 'should calculate average cred accross tenants' do
+      apartment.add_tenant(jake)
+      apartment.add_tenant(chris)
+
+      expect(apartment.avg_cred).to eq 650
+    end
+  end
 end
