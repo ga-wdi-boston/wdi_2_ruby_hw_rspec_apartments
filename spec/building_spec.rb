@@ -19,6 +19,17 @@ describe Building do
     end
   end
 
+  describe '#remove_apartment' do
+    it 'removes an apartment' do
+      apartment = new_apartment
+      building.add_apartment(apartment)
+      building.remove_apartment(apartment.number)
+
+      expect(building.apartments).to eq []
+    end
+  end
+
+  # factory object
   def new_apartment(number: 1, rent: 1000, sq_ft: 2000, num_bedrooms: 2, num_bathrooms: 2)
     apartment = Apartment.new(number: number, rent: rent, sq_ft: sq_ft, num_bedrooms: num_bedrooms, num_bathrooms: num_bathrooms)
     apartment
