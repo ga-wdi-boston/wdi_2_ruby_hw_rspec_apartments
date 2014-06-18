@@ -8,7 +8,8 @@ describe Apartment do
     rent: 500,
     sq_footage: 501,
     num_of_bedrooms: 2,
-    num_of_bathrooms: 1) }
+    num_of_bathrooms: 1)
+  }
 
   describe 'attributes' do
     it 'has a number, rent, square footage, number of bedrooms, and number of bathrooms' do
@@ -27,9 +28,10 @@ describe Apartment do
   describe '#add_tenant' do
     it 'is able to add a tenant' do
       fred = new_tenant
+      bad_tenant = new_tenant(credit_score: 3)
       ap.add_tenant(fred)
       expect(ap.tenants).to eq [fred]
-
+      expect{ ap.add_tenant(bad_tenant) }.to raise_error Apartment::BadCreditError
     end
   end
 

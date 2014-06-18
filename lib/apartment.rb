@@ -17,9 +17,12 @@ class Apartment
     @number, @rent, @sq_footage, @num_of_bedrooms, @num_of_bathrooms, @tenants =
       number, rent, sq_footage, num_of_bedrooms, num_of_bathrooms, []
 
-    end
+  end
 
     def add_tenant(tenant)
+      raise BadCreditError if(tenant.credit_rating == :bad)
       @tenants += [tenant]
     end
+
+    class BadCreditError < StandardError; end
 end

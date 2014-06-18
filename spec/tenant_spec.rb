@@ -27,8 +27,8 @@ describe Tenant do
         expect(bad_tenant.credit_rating).to eq :bad
       end
     end
-  end
 
+  end
   def new_tenant(name:'fred', age: 1, credit_score: 700)
     Tenant.new(name: name, age: age, credit_score: credit_score)
   end
