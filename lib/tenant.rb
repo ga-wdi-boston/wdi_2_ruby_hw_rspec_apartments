@@ -10,8 +10,12 @@ class Tenant
 
   def credit_rating
     case
-    when credit_score == 700 then 'good'
-    when credit_score == 500 then 'bad'
+    when credit_score >= 760 then 'excellent'
+    when credit_score >= 725 then 'great'
+    when credit_score >= 660 then 'good'
+    when credit_score >= 560 then 'mediocre'
+    else
+      'bad'
 
     end
   end
