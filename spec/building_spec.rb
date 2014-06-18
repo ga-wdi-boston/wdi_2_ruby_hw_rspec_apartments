@@ -55,6 +55,14 @@ describe Building do
     end
   end
 
+  describe '#monthly_revenue' do
+    it 'sums the rent of each apartment in the building' do
+      building.add_apartment(home)
+      building.add_apartment(downstairs)
+      expect(building.monthly_revenue).to eq 6600
+    end
+  end
+
 
 
 
