@@ -34,7 +34,24 @@ class Apartment
     if tenants.empty?
       nil
     else
-      tenants.map{ |person| person.credit_score }.reduce(0, &:+)/tenants.length
+      tenants.map{ |person| person.credit_score.to_f }.reduce(0, &:+)/tenants.length
+    end
+  end
+
+  def credit_rating
+    case credit_score
+    when nil
+      nil
+    when (0...560)
+      "bad"
+    when (560...660)
+      "mediocre"
+    when (660...725)
+      "good"
+    when (725...760)
+      "great"
+    else
+      "excellent"
     end
   end
 

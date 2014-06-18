@@ -118,14 +118,34 @@ describe Apartment do
       apt = new_apt(beds: 3)
       apt.add_tenant(new_tenant(credit_score: 800))
       apt.add_tenant(new_tenant(credit_score: 600))
-      apt.add_tenant(new_tenant(credit_score: 700))
 
       expect(apt.credit_score).to eq 700
 
+      apt.add_tenant(new_tenant(credit_score: 750))
+
+      expect(apt.credit_score).to be_within(0.01).of(716.6666)
+    end
+
+    it 'has no credit score if there are no tenants' do
+      expect(new_apt.credit_score).to eq nil
     end
   end
 
   # has credit rating
+  describe '#credit_rating' do
+    it 'has a credit rating according to the table' do
+      apt = new_apt(beds: 3)
+      apt.add_tenant(new_tenant(credit_score: 800))
+      apt.add_tenant(new_tenant(credit_score: 600))
+      apt.add_tenant(new_tenant(credit_score: 700))
+
+      expect(apt.credit_rating).to eq "good"
+    end
+
+    it 'has no credit rating if there are no tenants' do
+      expect(new_apt.credit_rating).to eq nil
+    end
+  end
 
   def new_apt(number: 9.75, rent: 1000, sq_ft: 400, beds: 2, baths: 1, add_bob: false)
     room = Apartment.new(number: number, rent: rent, sq_ft: sq_ft, beds: beds, baths: baths)
