@@ -77,6 +77,18 @@ describe Flat do
       flat.add_tenant('Euan', 24, 750)
 
       expect(flat.mean_credit).to eq 700
+
+    end
+  end
+
+  describe '#total_rating' do
+    it 'determines credit rating of all combined credit scores of tenants' do
+      flat = Flat.new(28, 900, 800, 3, 1)
+      flat.add_tenant('Eric', 26, 650)
+      flat.add_tenant('Ian', 24, 700)
+      flat.add_tenant('Euan', 24, 750)
+
+      expect(flat.total_rating).to eq 'good'
     end
   end
 

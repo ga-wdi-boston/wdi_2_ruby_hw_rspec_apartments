@@ -35,7 +35,20 @@ class Flat
 
   def mean_credit
     tenants.map(&:credit_score).reduce(:+) / 3
+
   end
+
+  def total_rating
+    case
+    when mean_credit > 760 then 'excellent'
+    when mean_credit > 725 then 'great'
+    when mean_credit > 660 then 'good'
+    when mean_credit > 560 then 'mediocre'
+    else
+      'bad'
+    end
+  end
+
 
 
 end
