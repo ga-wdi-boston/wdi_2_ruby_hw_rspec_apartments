@@ -47,5 +47,19 @@ describe Building do
     end
   end
 
+  describe '#square_footage' do
+    it 'calculates the building\'s total square_footage' do
+      building.add_apartment(home)
+      building.add_apartment(downstairs)
+      expect(building.square_footage).to eq 1500
+    end
+  end
+
+
+
+
+
+
+
 end
 

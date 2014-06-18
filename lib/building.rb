@@ -18,4 +18,8 @@ class Building
     apartments.delete(candidate)
   end
 
+  def square_footage
+    apartments.map(&:square_footage).reduce(0, &:+)
+  end
+
 end
