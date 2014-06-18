@@ -21,4 +21,8 @@ class Building
   def revenue
     apartments.map(&:rent).reduce(0, &:+)
   end
+
+  def tenants_list
+    apartments.map(&:tenants).flatten.map(&:name).uniq
+  end
 end

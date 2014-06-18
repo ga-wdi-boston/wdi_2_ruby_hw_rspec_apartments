@@ -55,7 +55,36 @@ describe Building do
     end
   end
 
-  # factory object
+  describe '#tenants_list' do
+    it 'returns list of tenants in building' do
+      apartment1 = new_apartment
+      tenant1 = new_tenant
+      tenant2 = new_tenant
+      tenant2.name = 'Name2'
+      apartment1.add_tenant(tenant1)
+      apartment1.add_tenant(tenant2)
+
+      apartment2 = new_apartment
+      tenant3 = new_tenant
+      tenant4 = new_tenant
+      tenant3.name = 'Name3'
+      tenant4.name = 'Name4'
+      apartment2.add_tenant(tenant3)
+      apartment2.add_tenant(tenant4)
+
+      building.add_apartment(apartment1)
+      building.add_apartment(apartment2)
+
+      expect(building.tenants_list).to match_array ['Name', 'Name2', 'Name3', 'Name4']
+    end
+  end
+
+  # factory objects
+  def new_tenant(name: 'Name', age: 88, credit_score: 800)
+    tenant = Tenant.new(name: name, age: age, credit_score: credit_score)
+    tenant
+  end
+
   def new_apartment(number: 1, rent: 1000, sq_ft: 2000, num_bedrooms: 2, num_bathrooms: 2)
     apartment = Apartment.new(number: number, rent: rent, sq_ft: sq_ft, num_bedrooms: num_bedrooms, num_bathrooms: num_bathrooms)
     apartment
