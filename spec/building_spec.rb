@@ -37,6 +37,14 @@ describe Building do
       building.add_apartment(downstairs)
       expect { building.remove_apartment(3) }.to raise_error(ArgumentError, 'could not find apartment with that number')
     end
+
+    it 'raises an error if the apartment has tenants' do
+      home.add_tenant(new_tenant)
+      building.add_apartment(home)
+      building.add_apartment(downstairs)
+      expect { building.remove_apartment(2) }.to raise_error(ArgumentError, 'cannot remove occupied apartment')
+
+    end
   end
 
 end
