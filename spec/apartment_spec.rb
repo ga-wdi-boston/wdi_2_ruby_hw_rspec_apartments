@@ -114,4 +114,17 @@ describe Apartment do
       expect(apartment.tenants).to be_empty
     end
   end
+
+  describe '#average_credit_score' do
+    it 'averages the credit scores of all tenants' do
+      tenants = [
+        new_tenant(credit_score: 700),
+        new_tenant(credit_score: 625),
+        new_tenant(credit_score: 670)
+      ]
+      apartment = new_apartment(tenants: tenants, bedrooms: 3)
+
+      expect(apartment.average_credit_score).to eq 665
+    end
+  end
 end

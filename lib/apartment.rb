@@ -34,4 +34,8 @@ class Apartment
   def remove_all_tenants
     @tenants.clear
   end
+
+  def average_credit_score
+    @tenants.map(&:credit_score).reduce(0, &:+) / @tenants.count.to_f
+  end
 end
