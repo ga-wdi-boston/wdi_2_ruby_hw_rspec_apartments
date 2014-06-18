@@ -1,4 +1,8 @@
+require_relative 'credit_rating'
+
 class Apartment
+  include CreditRating
+
   attr_reader :number, :rent, :sq_ft, :num_bedrooms, :num_bathrooms, :tenants
 
   def initialize(number:, rent:, sq_ft:, num_bedrooms:, num_bathrooms:)

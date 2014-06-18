@@ -103,6 +103,20 @@ describe Apartment do
     end
   end
 
+  describe '#credit_rating' do
+    it 'gives credit rating based off apartment credit score' do
+      tenant1 = new_tenant
+      tenant2 = new_tenant
+      tenant2.credit_score = 700
+      apartment = new_apartment
+
+      apartment.add_tenant(tenant1)
+      apartment.add_tenant(tenant2)
+
+      expect(apartment.credit_rating).to eq 'great'
+    end
+  end
+
   # factory objects
   def new_tenant(name: 'Name', age: 88, credit_score: 800)
     tenant = Tenant.new(name: name, age: age, credit_score: credit_score)
