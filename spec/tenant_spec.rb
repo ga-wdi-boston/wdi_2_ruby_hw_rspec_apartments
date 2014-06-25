@@ -1,3 +1,4 @@
+require_relative 'factories'
 require_relative '../lib/tenant'
 
 describe Tenant do
@@ -13,8 +14,8 @@ describe Tenant do
 
   describe '#credit_rating' do
     it 'evaluates the credit rating of the tenant' do
-      good_tenant = Tenant.new(name: 'x', age: 30, credit_score: 670)
-      bad_tenant = Tenant.new(name: 'y', age: 30, credit_score: 520)
+      good_tenant = new_tenant(credit_score: 670)
+      bad_tenant = new_tenant(credit_score: 520)
 
       expect(good_tenant.credit_rating).to eq :good
       expect(bad_tenant.credit_rating).to eq :bad
