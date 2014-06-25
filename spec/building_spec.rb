@@ -88,4 +88,19 @@ describe Building do
       expect(building.monthly_revenue).to eq 5370
     end
   end
+
+  describe '#tenants' do
+    it 'collects the tenants from all apartments' do
+      tenants = []
+      6.times{ tenants << new_tenant }
+      apartments = [
+        new_apartment(bedrooms: 2, tenants: [tenants[0], tenants[5]]),
+        new_apartment(bedrooms: 3, tenants: [tenants[1], tenants[2], tenants[4]]),
+        new_apartment(bedrooms: 1, tenants: [tenants[3]])
+      ]
+      building = new_building(apartments: apartments)
+
+      expect(building.tenants).to match_array tenants
+    end
+  end
 end
