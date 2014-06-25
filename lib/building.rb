@@ -26,4 +26,8 @@ class Building
   def total_square_feet
     @apartments.map(&:square_feet).reduce(0, &:+)
   end
+
+  def monthly_revenue
+    @apartments.map(&:rent).reduce(0, &:+)
+  end
 end

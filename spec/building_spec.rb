@@ -75,4 +75,17 @@ describe Building do
       expect(building.total_square_feet).to eq 1880
     end
   end
+
+  describe '#monthly_revenue' do
+    it 'sums the rents of all apartments' do
+      apartments = [
+        new_apartment(rent: 1700),
+        new_apartment(rent: 2150),
+        new_apartment(rent: 1520)
+      ]
+      building = new_building(apartments: apartments)
+
+      expect(building.monthly_revenue).to eq 5370
+    end
+  end
 end
