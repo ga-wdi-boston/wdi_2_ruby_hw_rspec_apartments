@@ -103,4 +103,24 @@ describe Building do
       expect(building.tenants).to match_array tenants
     end
   end
+
+  describe '#apartments_by_credit_rating' do
+    it 'groups the apartments by credit rating and sorts by average score' do
+      great_1 = new_apartment(tenants: [new_tenant(credit_score: 730)])
+      great_2 = new_apartment(tenants: [new_tenant(credit_score: 750)])
+      good_1 = new_apartment(tenants: [new_tenant(credit_score: 700)])
+      good_2 = new_apartment(tenants: [new_tenant(credit_score: 720)])
+      mediocre_1 = new_apartment(tenants: [new_tenant(credit_score: 570)])
+      mediocre_2 = new_apartment(tenants: [new_tenant(credit_score: 610)])
+      building = new_building(apartments: [great_2, great_1, good_1, good_2, mediocre_2, mediocre_1])
+
+      grouped_apartments = {
+        great: [great_1, great_2],
+        good: [good_1, good_2],
+        mediocre: [mediocre_1, mediocre_2]
+      }
+
+      expect(building.apartments_by_credit_rating).to eq grouped_apartments
+    end
+  end
 end

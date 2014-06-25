@@ -34,4 +34,8 @@ class Building
   def tenants
     @apartments.map(&:tenants).flatten
   end
+
+  def apartments_by_credit_rating
+    @apartments.sort_by(&:average_credit_score).group_by(&:overall_credit_rating)
+  end
 end
