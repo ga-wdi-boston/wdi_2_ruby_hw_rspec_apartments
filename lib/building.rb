@@ -1,4 +1,6 @@
 class Building
+  class OccupiedError < StandardError; end
+
   attr_reader :address
 
   def initialize(address)
@@ -12,5 +14,12 @@ class Building
 
   def add_apartment(apartment)
     @apartments << apartment
+  end
+
+  def remove_apartment(number, remove_tenants: false)
+    target_apartment = @apartments.find{ |apartment| apartment.number == number }
+    raise OccupiedError unless target_apartment.tenants.empty? || remove_tenants
+    target_apartment.remove_all_tenants
+    @apartments.delete(target_apartment)
   end
 end

@@ -11,6 +11,8 @@ def new_apartment(number: '1B', rent: 2000, square_feet: 600, bedrooms: 1, bathr
   apartment
 end
 
-def new_building(address = '123 Main Street')
-  Building.new(address)
+def new_building(address = '123 Main Street', apartments: [])
+  building = Building.new(address)
+  apartments.each{ |apartment| building.add_apartment(apartment) }
+  building
 end

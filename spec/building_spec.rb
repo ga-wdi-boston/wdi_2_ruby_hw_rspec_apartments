@@ -34,4 +34,32 @@ describe Building do
       expect(building.apartments).to contain_exactly(apartment)
     end
   end
+
+  describe '#remove_apartment' do
+    it 'removes an apartment by number' do
+      apartment_2b = new_apartment(number: '2B')
+      apartment_not2b = new_apartment(number: '2F')
+      building = new_building(apartments: [apartment_2b, apartment_not2b])
+
+      building.remove_apartment('2F')
+
+      expect(building.apartments).to contain_exactly(apartment_2b)
+    end
+
+    it 'errors when attempting to remove an occupied apartment' do
+      apartment = new_apartment(number: '5F', tenants: [new_tenant])
+      building = new_building(apartments: [apartment])
+
+      expect{ building.remove_apartment('5F') }.to raise_error Building::OccupiedError
+    end
+
+    it 'allows removing an occupied apartment with an option' do
+      apartment = new_apartment(number: '5F', tenants: [new_tenant])
+      building = new_building(apartments: [apartment])
+
+      building.remove_apartment('5F', remove_tenants: true)
+
+      expect(building.apartments).to be_empty
+    end
+  end
 end
