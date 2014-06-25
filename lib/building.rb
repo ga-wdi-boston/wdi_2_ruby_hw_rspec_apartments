@@ -22,4 +22,8 @@ class Building
     target_apartment.remove_all_tenants
     @apartments.delete(target_apartment)
   end
+
+  def total_square_feet
+    @apartments.map(&:square_feet).reduce(0, &:+)
+  end
 end

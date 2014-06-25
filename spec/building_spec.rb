@@ -62,4 +62,17 @@ describe Building do
       expect(building.apartments).to be_empty
     end
   end
+
+  describe '#total_square_feet' do
+    it 'sums the square footage of all apartments' do
+      apartments = [
+        new_apartment(square_feet: 500),
+        new_apartment(square_feet: 750),
+        new_apartment(square_feet: 630)
+      ]
+      building = new_building(apartments: apartments)
+
+      expect(building.total_square_feet).to eq 1880
+    end
+  end
 end
