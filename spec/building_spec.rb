@@ -31,7 +31,7 @@ describe Building do
 
       building.add_apartment(apartment)
 
-      expect(building.apartments).to contain_exactly(apartment)
+      expect(building.apartments).to contain_exactly apartment
     end
   end
 
@@ -43,7 +43,7 @@ describe Building do
 
       building.remove_apartment('2F')
 
-      expect(building.apartments).to contain_exactly(apartment_2b)
+      expect(building.apartments).to contain_exactly apartment_2b
     end
 
     it 'errors when attempting to remove an occupied apartment' do

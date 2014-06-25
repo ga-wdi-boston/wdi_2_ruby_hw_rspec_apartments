@@ -41,7 +41,7 @@ describe Apartment do
 
       apartment.add_tenant(tenant)
 
-      expect(apartment.tenants).to contain_exactly(tenant)
+      expect(apartment.tenants).to contain_exactly tenant
     end
 
     it 'cannot add a tenant if there are no free bedrooms' do
@@ -69,7 +69,7 @@ describe Apartment do
 
       apartment.remove_tenant(first_tenant)
 
-      expect(apartment.tenants).to contain_exactly(second_tenant)
+      expect(apartment.tenants).to contain_exactly second_tenant
     end
 
     it 'removes a tenant by name' do
@@ -79,7 +79,7 @@ describe Apartment do
 
       apartment.remove_tenant('Keith')
 
-      expect(apartment.tenants).to contain_exactly(fred)
+      expect(apartment.tenants).to contain_exactly fred
     end
 
     it 'errors if a tenant is not found by object reference' do
