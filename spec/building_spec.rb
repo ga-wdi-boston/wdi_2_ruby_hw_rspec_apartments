@@ -23,4 +23,15 @@ describe Building do
       expect(building.apartments).to be_empty
     end
   end
+
+  describe '#add_apartment' do
+    it 'adds an apartment to the building' do
+      building = new_building
+      apartment = new_apartment
+
+      building.add_apartment(apartment)
+
+      expect(building.apartments).to contain_exactly(apartment)
+    end
+  end
 end
