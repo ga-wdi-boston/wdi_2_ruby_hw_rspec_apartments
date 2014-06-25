@@ -10,3 +10,7 @@ def new_apartment(number: '1B', rent: 2000, square_feet: 600, bedrooms: 1, bathr
   tenants.each{ |tenant| apartment.add_tenant(tenant) }
   apartment
 end
+
+def new_building(address = '123 Main Street')
+  Building.new(address)
+end
